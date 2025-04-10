@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  db: 
+    image: postgres:15.2
+    volumes:
+      - /var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: wordle_dev
+    ports:
+      - 5432:5432
+
+  web:
+    depends_on:
+      - db
+    build: .
+    environment:
+      PHX_HOST: localhost
+      DATABASE_URL: ecto://postgres:postgres@db/postgres
+      SECRET_KEY_BASE: B5vL87bLmS3ntaSsW+AXhoTu1lzunV481vZL+UD5o+0M0olh/wBt+IofC0b5TToy
+    ports:
+      - 4000:4000
+    command: >
+      bash -c "bin/migrate && bin/server"
