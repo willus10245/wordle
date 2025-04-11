@@ -232,7 +232,7 @@ defmodule WordleWeb.CoreComponents do
       type={@type}
       class={[
         "phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3",
-        "text-sm font-semibold leading-6 text-white active:text-white/80",
+        "font-semibold leading-6 text-white active:text-white/80",
         @class
       ]}
       {@rest}
@@ -559,10 +559,7 @@ defmodule WordleWeb.CoreComponents do
   def back(assigns) do
     ~H"""
     <div class="mt-16">
-      <.link
-        navigate={@navigate}
-        class="text-sm font-semibold leading-6 text-white hover:text-white"
-      >
+      <.link navigate={@navigate} class="text-sm font-semibold leading-6 text-white hover:text-white">
         <.icon name="hero-arrow-left-solid" class="h-3 w-3" />
         {render_slot(@inner_block)}
       </.link>
